@@ -1,20 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 
-import InputForm from "./components/InputForm/InputForm";
+import Calculator from "./components/Calculator/Calculator";
 
 const App = () => {
-    const [debt, setDebt] = useState('');
-
-    const onTermSubmit = term => {
-        setDebt(term);
-    };
 
     return (
         <div className="ui container" style={{ marginTop: '10px' }}>
-            <InputForm onFormSubmit={onTermSubmit} />
-            <div>
-                {debt}
-            </div>
+            <h1 className="ui center aligned header">Loan Payment Calculator</h1>
+            <Calculator />
         </div>
     );
 };

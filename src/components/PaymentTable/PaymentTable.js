@@ -3,9 +3,11 @@ import React from "react";
 import { getAnnuityCoeff } from "../../utils/utils";
 
 const PaymentTable = ({amountToBorrow, borrowTerm, interestRate}) => {
+
+    console.log(getAnnuityCoeff(amountToBorrow, borrowTerm, interestRate));
     return (
         <div>
-            {getAnnuityCoeff(amountToBorrow, borrowTerm, interestRate)}
+            Ola-la
         </div>
     )
 };

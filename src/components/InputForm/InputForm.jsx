@@ -6,11 +6,11 @@ const InputForm = props => {
         <div className="ui segment">
             <form className="ui form">
                 <div className="three fields">
-                    <div className="field error">
+                    <div className="field">
                         <label htmlFor="amountToBorrow">Borrow Sum</label>
                         <input
                             id="amountToBorrow"
-                            type="number"
+                            type="text"
                             value={props.amountToBorrow}
                             onChange={(e) => props.setAmountToBorrow(e.target.value)}
                         />
@@ -19,7 +19,7 @@ const InputForm = props => {
                         <label htmlFor="borrowTerm">Borrow Term</label>
                         <input
                             id="borrowTerm"
-                            type="number"
+                            type="text"
                             value={props.borrowTerm}
                             onChange={(e) => props.setBorrowTerm(e.target.value)}
                         />
@@ -28,7 +28,7 @@ const InputForm = props => {
                         <label htmlFor="interestRate">Interest Rate</label>
                         <input
                             id="interestRate"
-                            type="number"
+                            type="text"
                             value={props.interestRate}
                             onChange={(e) => props.setInterestRate(e.target.value)}
                         />

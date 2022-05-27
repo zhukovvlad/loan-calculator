@@ -1,20 +1,19 @@
 export const getAnnuityCoeff = (amountToBorrow, borrowTerm, interestRate) => {
-    const monthlyPaymentStat = [];
+    const monthlyPaymentStat = [];  // We will write here all information about payments in current period
 
+    const monthRate = parseFloat((interestRate/12/100));
+    const annuityCoeff = parseFloat(monthRate * Math.pow(1 + monthRate, parseFloat(borrowTerm)) / (Math.pow(1 + monthRate, parseFloat(borrowTerm)) - 1));
 
-    const monthRate = parseFloat((interestRate/12/100).toFixed(2));
-
-    console.log('Type monthRate', typeof(monthRate));
-
-    const annuityCoeff = parseFloat(monthRate * Math.pow(1 + monthRate, parseFloat(borrowTerm)) / (Math.pow(1 + monthRate, parseFloat(borrowTerm)) - 1).toFixed(7));
-
-    console.log('Type of annuitycoeff ', typeof(annuityCoeff));
+    console.log('Type of annuitycoeff ', annuityCoeff);
 
     let initialDebt = parseFloat(amountToBorrow);
 
     console.log('Very initial debt type ', typeof(initialDebt));
 
     const totalMonthlyPayment = Math.ceil(amountToBorrow * annuityCoeff);
+
+    let totalInterestPaid = 0;
+    let totalPrincipalPaid = 0;
 
     console.log(totalMonthlyPayment);
     console.log('Type of monthlyPayment ', typeof(totalMonthlyPayment));
@@ -23,17 +22,27 @@ export const getAnnuityCoeff = (amountToBorrow, borrowTerm, interestRate) => {
         let interestMonthlyPaid = parseFloat((initialDebt * monthRate).toFixed(2));
         let principalMonthlyPaid = parseFloat((totalMonthlyPayment - interestMonthlyPaid).toFixed(2));
         let finalDebt = parseFloat((initialDebt - principalMonthlyPaid).toFixed(2));
-        if (totalMonthlyPayment > initialDebt + interestMonthlyPaid) {
-            principalMonthlyPaid = initialDebt - interestMonthlyPaid;
+        // if (totalMonthlyPayment > initialDebt + interestMonthlyPaid) {
+        //     principalMonthlyPaid = initialDebt - interestMonthlyPaid;
+        //     finalDebt = 0;
+        // }
+
+        if (initialDebt < totalMonthlyPayment) {
+            principalMonthlyPaid = initialDebt;
             finalDebt = 0;
         }
+
+        totalInterestPaid += parseFloat(interestMonthlyPaid.toFixed(2));
+        totalPrincipalPaid += principalMonthlyPaid;
         
 
         monthlyPaymentStat.push({
             initialDebt: initialDebt,
             interestMonthlyPaid: interestMonthlyPaid,
             principalMonthlyPaid: principalMonthlyPaid,
-            finalDebt: finalDebt
+            finalDebt: finalDebt,
+            totalInterestPaid: totalInterestPaid,
+            totalPrincipalPaid: totalPrincipalPaid
         });
 
         initialDebt = finalDebt;

@@ -2,22 +2,32 @@ export const getAnnuityCoeff = (amountToBorrow, borrowTerm, interestRate) => {
     const monthlyPaymentStat = [];
 
 
-    const monthRate = parseFloat(interestRate).toFixed(2)/12/100;
+    const monthRate = parseFloat((interestRate/12/100).toFixed(2));
 
-    const annuityCoeff = (monthRate * Math.pow(1 + monthRate, borrowTerm) / (Math.pow(1 + monthRate, borrowTerm) - 1)).toFixed(7);
+    console.log('Type monthRate', typeof(monthRate));
 
-    console.log(annuityCoeff);
+    const annuityCoeff = parseFloat(monthRate * Math.pow(1 + monthRate, parseFloat(borrowTerm)) / (Math.pow(1 + monthRate, parseFloat(borrowTerm)) - 1).toFixed(7));
 
-    let initialDebt = amountToBorrow;
+    console.log('Type of annuitycoeff ', typeof(annuityCoeff));
 
-    const totalMonthlyPayment = amountToBorrow * annuityCoeff;
+    let initialDebt = parseFloat(amountToBorrow);
 
-    console.log(Math.ceil(totalMonthlyPayment));
+    console.log('Very initial debt type ', typeof(initialDebt));
+
+    const totalMonthlyPayment = Math.ceil(amountToBorrow * annuityCoeff);
+
+    console.log(totalMonthlyPayment);
+    console.log('Type of monthlyPayment ', typeof(totalMonthlyPayment));
 
     for (let i = 1; i <= borrowTerm; i++) {
-        let interestMonthlyPaid = initialDebt * monthRate;
-        let principalMonthlyPaid = totalMonthlyPayment - interestMonthlyPaid;
-        let finalDebt = initialDebt - principalMonthlyPaid;
+        let interestMonthlyPaid = parseFloat((initialDebt * monthRate).toFixed(2));
+        let principalMonthlyPaid = parseFloat((totalMonthlyPayment - interestMonthlyPaid).toFixed(2));
+        let finalDebt = parseFloat((initialDebt - principalMonthlyPaid).toFixed(2));
+        if (totalMonthlyPayment > initialDebt + interestMonthlyPaid) {
+            principalMonthlyPaid = initialDebt - interestMonthlyPaid;
+            finalDebt = 0;
+        }
+        
 
         monthlyPaymentStat.push({
             initialDebt: initialDebt,

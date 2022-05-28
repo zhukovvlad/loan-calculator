@@ -12,7 +12,11 @@ const InputForm = props => {
                             id="amountToBorrow"
                             type="text"
                             value={props.amountToBorrow}
-                            onChange={(e) => props.setAmountToBorrow(e.target.value)}
+                            onChange={(e) => {
+                                if (!isNaN(+e.target.value)) {
+                                    props.setAmountToBorrow(e.target.value)
+                                }
+                                return}}
                         />
                     </div>
                     <div className="field">
@@ -21,7 +25,11 @@ const InputForm = props => {
                             id="borrowTerm"
                             type="text"
                             value={props.borrowTerm}
-                            onChange={(e) => props.setBorrowTerm(e.target.value)}
+                            onChange={(e) => {
+                                if (!isNaN(+e.target.value)) {
+                                    props.setBorrowTerm(e.target.value)
+                                }
+                                return}}
                         />
                     </div>
                     <div className="field">
@@ -30,7 +38,11 @@ const InputForm = props => {
                             id="interestRate"
                             type="text"
                             value={props.interestRate}
-                            onChange={(e) => props.setInterestRate(e.target.value)}
+                            onChange={(e) => {
+                                if (!isNaN(+e.target.value)) {
+                                    props.setInterestRate(e.target.value)
+                                }
+                                return}}
                         />
                     </div>
                 </div>

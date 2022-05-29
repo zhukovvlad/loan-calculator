@@ -16,7 +16,9 @@ const InputForm = props => {
                                 if (!isNaN(+e.target.value)) {
                                     props.setAmountToBorrow(e.target.value)
                                 }
-                                return}}
+                                return}
+                            }
+                            placeholder="Input total amount of debt"
                         />
                     </div>
                     <div className="field">

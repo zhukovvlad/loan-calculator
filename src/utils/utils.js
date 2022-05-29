@@ -1,4 +1,8 @@
 export const getAnnuityCoeff = (amountToBorrow, borrowTerm, interestRate) => {
+    // console.log(!amountToBorrow && !borrowTerm && !interestRate);
+    // if (amountToBorrow === '' && borrowTerm === '' && interestRate === '') {
+    //     return [1, 2, 3];
+    // }
     const monthlyPaymentStat = [];  // We will write here all information about payments in current period
 
     const monthRate = interestRate/12/100;
@@ -25,6 +29,7 @@ export const getAnnuityCoeff = (amountToBorrow, borrowTerm, interestRate) => {
         
 
         monthlyPaymentStat.push({
+            period: i,
             initialDebt: initialDebt === amountToBorrow ? parseFloat(initialDebt) : parseFloat(initialDebt.toFixed(2)),
             interestMonthlyPaid: parseFloat(interestMonthlyPaid.toFixed(2)),
             principalMonthlyPaid: parseFloat(principalMonthlyPaid.toFixed(2)),

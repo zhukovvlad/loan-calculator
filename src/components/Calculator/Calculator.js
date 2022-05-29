@@ -23,6 +23,7 @@ const Calculator = () => {
                 borrowTerm={borrowTerm}
                 interestRate={interestRate}
             />
+            
         </Fragment>
     );
 };

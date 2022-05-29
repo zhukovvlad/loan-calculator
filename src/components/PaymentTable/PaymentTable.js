@@ -3,7 +3,7 @@ import React from "react";
 import { getAnnuityCoeff } from "../../utils/utils";
 
 const PaymentTable = ({amountToBorrow, borrowTerm, interestRate}) => {
-    if (amountToBorrow === '' && borrowTerm === '' && interestRate === '') {
+    if (amountToBorrow === '' || borrowTerm === '' || interestRate === '') {
         return (
             <div>
                 Ola-la

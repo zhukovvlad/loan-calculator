@@ -7,22 +7,22 @@ const InputForm = props => {
             <form className="ui form">
                 <div className="three fields">
                     <div className="field">
-                        <label htmlFor="amountToBorrow">Borrow Sum</label>
+                        <label htmlFor="amountToBorrow">Borrow Sum, $</label>
                         <input
                             id="amountToBorrow"
                             type="text"
-                            value={props.amountToBorrow}
+                            value={props.amountToBorrow.toLocaleString('en-En', {style: 'currency', currency: 'USD'})}
                             onChange={(e) => {
                                 if (!isNaN(+e.target.value)) {
                                     props.setAmountToBorrow(e.target.value)
                                 }
                                 return}
                             }
-                            placeholder="Input total amount of debt"
+                            placeholder="Input total amount of loan"
                         />
                     </div>
                     <div className="field">
-                        <label htmlFor="borrowTerm">Borrow Term</label>
+                        <label htmlFor="borrowTerm">Borrow Term, $</label>
                         <input
                             id="borrowTerm"
                             type="text"
@@ -35,7 +35,7 @@ const InputForm = props => {
                         />
                     </div>
                     <div className="field">
-                        <label htmlFor="interestRate">Interest Rate</label>
+                        <label htmlFor="interestRate">Interest Rate, %</label>
                         <input
                             id="interestRate"
                             type="text"

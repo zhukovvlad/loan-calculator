@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/loan-calculator/static/js/main.7ee742d8.js",
+    "index.html": "/loan-calculator/index.html",
+    "main.7ee742d8.js.map": "/loan-calculator/static/js/main.7ee742d8.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.7ee742d8.js"
+  ]
+}

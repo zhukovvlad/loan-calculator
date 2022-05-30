@@ -22,7 +22,7 @@ const InputForm = props => {
                         />
                     </div>
                     <div className="field">
-                        <label htmlFor="borrowTerm">Borrow Term, $</label>
+                        <label htmlFor="borrowTerm">Borrow Term, months</label>
                         <input
                             id="borrowTerm"
                             type="text"

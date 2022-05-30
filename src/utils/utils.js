@@ -34,6 +34,7 @@ export const getAnnuityCoeff = (amountToBorrow, borrowTerm, interestRate) => {
         monthlyPaymentStat.push({
             period: i,
             initialDebt: initialDebt === amountToBorrow ? parseFloat(initialDebt) : parseFloat(initialDebt.toFixed(2)),
+            totalMonthlyPayment: totalMonthlyPayment,
             interestMonthlyPaid: parseFloat(interestMonthlyPaid.toFixed(2)),
             principalMonthlyPaid: parseFloat(principalMonthlyPaid),
             finalDebt: parseFloat(finalDebt.toFixed(2)),
@@ -44,5 +45,5 @@ export const getAnnuityCoeff = (amountToBorrow, borrowTerm, interestRate) => {
         initialDebt = finalDebt;
     }
 
-    return [monthlyPaymentStat, totalMonthlyPayment];
+    return [monthlyPaymentStat, totalMonthlyPayment, totalInterestPaid, amountToBorrow];
 };

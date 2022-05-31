@@ -1,18 +1,19 @@
 import React from "react";
 
-import { getAnnuityCoeff } from "../../utils/utils";
+import { getPaymentStats } from "../../utils/utils";
 
 const PaymentTable = ({amountToBorrow, borrowTerm, interestRate}) => {
     if (amountToBorrow === '' || borrowTerm === '' || interestRate === '') {
         return (
-            <div>
-                Ola-la
+            <div className="ui vertical segment">
+                <div className="ui text container">
+                    <h3 className="ui huge center aligned header">Type values in fields above</h3>
+                </div>
             </div>
         )
     }
 
-
-    const renderList = getAnnuityCoeff(amountToBorrow, borrowTerm, interestRate)[0].map((row) => {
+    const renderList = getPaymentStats(amountToBorrow, borrowTerm, interestRate)[0].map((row) => {
         return (
             <tr key={row.period}>
                 <td className="ui center aligned">{row.period}</td>
@@ -25,12 +26,12 @@ const PaymentTable = ({amountToBorrow, borrowTerm, interestRate}) => {
         );
     });
 
-    const monthlyPayment = getAnnuityCoeff(amountToBorrow, borrowTerm, interestRate)[1];
-    const totalInterestPaid = getAnnuityCoeff(amountToBorrow, borrowTerm, interestRate)[2];
+    const monthlyPayment = getPaymentStats(amountToBorrow, borrowTerm, interestRate)[1];
+    const totalInterestPaid = getPaymentStats(amountToBorrow, borrowTerm, interestRate)[2];
     const totalPaid = totalInterestPaid + parseFloat(amountToBorrow);
    
 
-    console.log(getAnnuityCoeff(amountToBorrow, borrowTerm, interestRate));
+    console.log(getPaymentStats(amountToBorrow, borrowTerm, interestRate));
     return (
         <div>
             <div className="ui three small statistics">

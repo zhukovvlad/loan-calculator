@@ -28,8 +28,9 @@ const InputForm = props => {
                             type="text"
                             value={props.borrowTerm}
                             onChange={(e) => {
-                                if (!isNaN(+e.target.value)) {
-                                    props.setBorrowTerm(e.target.value)
+                                if (!isNaN(+e.target.value) & e.target.value !== '0') {
+                                    console.log(+e.target.value);
+                                    props.setBorrowTerm(e.target.value);
                                 }
                                 return}}
                         />

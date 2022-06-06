@@ -4,7 +4,10 @@ export const getPaymentStats = (amountToBorrow, borrowTerm, interestRate) => {
 
     const monthRate = interestRate/12/100;
     const annuityCoeff = monthRate === 0 ? 1 : monthRate * Math.pow(1 + monthRate, borrowTerm) / (Math.pow(1 + monthRate, borrowTerm) - 1);
-    const totalMonthlyPayment = Math.ceil(amountToBorrow * annuityCoeff);
+    let totalMonthlyPayment = Math.ceil(amountToBorrow * annuityCoeff);
+
+    console.log('annuiti coeff ', annuityCoeff);
+    console.log('total payment ', totalMonthlyPayment);
 
     let initialDebt = amountToBorrow;
     let totalInterestPaid = 0;
@@ -18,6 +21,7 @@ export const getPaymentStats = (amountToBorrow, borrowTerm, interestRate) => {
         if (initialDebt <= totalMonthlyPayment) {
             principalMonthlyPaid = initialDebt;
             finalDebt = 0;
+            totalMonthlyPayment = principalMonthlyPaid + interestMonthlyPaid;
         }
 
         totalInterestPaid += parseFloat(interestMonthlyPaid.toFixed(2));
